@@ -13,13 +13,15 @@ exports.signup = async (req, res) => {
   }
 }
 
+const { generateToken } = require('../utils/jwt')
+
 exports.login = async (req, res) => {
   const { username, password } = req.body
   try {
     const u = await User.findOne({ username })
     if (!u.comparePassword(password)) throw Error('密码错误')
     res.json({
-      username: u.username
+      token: generateToken({ username: u.username })
     })
   } catch (err) {
     res.status(406).json({ msg: '用户名密码错误' })
