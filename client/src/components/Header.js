@@ -11,7 +11,9 @@ import PropTypes from 'prop-types'
 
 const propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
-  goto: PropTypes.func.isRequired
+  goto: PropTypes.func.isRequired,
+  currentUser: PropTypes.string.isRequired,
+  logout: PropTypes.func.isRequired
 }
 
 class Header extends Component {
@@ -23,8 +25,15 @@ class Header extends Component {
     this.setState({ anchorEl: event.currentTarget })
   }
 
+  handleLogout = () => {
+    this.props.logout()
+    this.setState({
+      anchorEl: null
+    })
+  }
+
   render() {
-    const { isAuthenticated, goto } = this.props
+    const { isAuthenticated, goto, currentUser } = this.props
     const { anchorEl } = this.state
     const open = Boolean(anchorEl)
 
@@ -45,8 +54,8 @@ class Header extends Component {
           <AccountCircle />
         </IconButton>
         <Menu anchorEl={anchorEl} open={open}>
-          <MenuItem>账号</MenuItem>
-          <MenuItem>退出</MenuItem>
+          <MenuItem>{currentUser}</MenuItem>
+          <MenuItem onClick={this.handleLogout}>退出</MenuItem>
         </Menu>
       </Logout>
     )

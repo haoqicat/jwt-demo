@@ -9,3 +9,10 @@ export const historyPush = path => {
 export const goto = path => dispatch => {
   dispatch(historyPush(path))
 }
+
+export const alert = msg => ({
+  type: types.ALERT,
+  msg
+})
+
+export const hideAlert = () => dispatch => dispatch({ type: types.HIDE_ALERT })
