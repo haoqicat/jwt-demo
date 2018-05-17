@@ -6,6 +6,7 @@ import Home from '../containers/HomeContainer'
 import Login from '../containers/LoginContainer'
 import Signup from '../containers/SignupContainer'
 import Alert from '../containers/AlertContainer'
+import PostNew from '../containers/PostNewContainer'
 
 import PropTypes from 'prop-types'
 
@@ -32,11 +33,14 @@ class Main extends Component {
       <Wrap>
         <Header />
         <Alert />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={Signup} />
-        </Switch>
+        <Container>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/post/new" component={PostNew} />
+          </Switch>
+        </Container>
       </Wrap>
     )
   }
@@ -47,3 +51,8 @@ Main.propTypes = propTypes
 export default Main
 
 const Wrap = styled.div``
+
+const Container = styled.div`
+  width: 600px;
+  margin: 0 auto;
+`

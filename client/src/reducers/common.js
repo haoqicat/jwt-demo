@@ -39,9 +39,23 @@ const alert = (state = '', action) => {
       return state
   }
 }
+const isAdmin = (state = false, action) => {
+  switch (action.type) {
+    case types.LOGIN_SUCCESS:
+    case types.SIGNUP_SUCCESS:
+      return action.isAdmin
+    case types.LOGOUT_SUCCESS:
+      return false
+    case types.LOAD_CURRENT_USER:
+      return action.isAdmin
+    default:
+      return state
+  }
+}
 
 export default combineReducers({
   isAuthenticated,
   currentUser,
-  alert
+  alert,
+  isAdmin
 })

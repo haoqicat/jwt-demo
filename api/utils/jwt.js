@@ -4,7 +4,7 @@ const { CERT } = require('../config')
 const generateToken = user => {
   // sign 是同步的
   return jwt.sign(user, CERT, {
-    expiresIn: 10 // 单位是秒
+    expiresIn: 1000 // 单位是秒
   })
 }
 
