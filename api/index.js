@@ -5,19 +5,8 @@ app.use(bodyParser.json())
 const morgan = require('morgan')
 app.use(morgan('tiny'))
 
-app.get('/', (req, res) => {
-  res.send('Hello Client')
-})
-
-const User = require('./models/user.js')
-
-app.post('/user/signup', (req, res) => {
-  const u = new User(req.body)
-  u.save()
-  res.json({
-    msg: 'saved'
-  })
-})
+const routes = require('./routes')
+routes(app)
 
 const { PORT, DB_NAME } = require('./config')
 
