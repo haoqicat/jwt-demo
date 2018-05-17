@@ -6,4 +6,5 @@ module.exports = app => {
   app.post('/user/signup', User.signup)
   app.post('/user/login', User.login)
   app.post('/post', requireAuth, Post.new)
+  app.get('/posts', Post.all)
 }

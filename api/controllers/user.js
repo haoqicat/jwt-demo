@@ -5,8 +5,7 @@ exports.signup = async (req, res) => {
     const u = new User(req.body)
     await u.save()
     res.json({
-      id: u._id,
-      username: u.username
+      token: generateToken({ username: u.username, admin: u.admin })
     })
   } catch (err) {
     res.status(406).json({ msg: '用户名重复' })
@@ -21,7 +20,7 @@ exports.login = async (req, res) => {
     const u = await User.findOne({ username })
     if (!u.comparePassword(password)) throw Error('密码错误')
     res.json({
-      token: generateToken({ username: u.username })
+      token: generateToken({ username: u.username, admin: u.admin })
     })
   } catch (err) {
     res.status(406).json({ msg: '用户名密码错误' })

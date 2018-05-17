@@ -4,7 +4,7 @@ const { CERT } = require('../config')
 const generateToken = user => {
   // sign 是同步的
   return jwt.sign(user, CERT, {
-    expiresIn: 10 // 单位是秒
+    expiresIn: 1000 // 单位是秒
   })
 }
 
@@ -19,7 +19,11 @@ const requireAuth = (req, res, next) => {
           return res.status(401).json({ msg: '认证失败！' })
         }
       } else {
-        next()
+        if (decoded.admin === true) {
+          next()
+        } else {
+          res.status(401).json({ msg: '认证失败！' })
+        }
       }
     })
   } else {
