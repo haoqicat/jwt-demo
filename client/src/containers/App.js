@@ -4,6 +4,7 @@ import history from '../utils/historyUtils'
 import Main from '../components/Main'
 import { connect } from 'react-redux'
 import { loadCurrentUserIfNeeded } from '../actions/authActions'
+import { fetchPosts } from '../actions/postActions'
 
 class App extends Component {
   render() {
@@ -15,4 +16,4 @@ class App extends Component {
   }
 }
 
-export default connect(null, { loadCurrentUserIfNeeded })(App)
+export default connect(null, { loadCurrentUserIfNeeded, fetchPosts })(App)

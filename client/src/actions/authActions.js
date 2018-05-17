@@ -11,7 +11,7 @@ export const loadCurrentUserIfNeeded = () => dispatch => {
       window.localStorage.removeItem('jwtToken')
       historyPush('/login')
       dispatch({ type: types.LOGOUT_SUCCESS })
-      return console.log('认证码失效，请重新登录')
+      return dispatch(alert('认证码失效，请重新登录'))
     }
     const { username, admin } = decodeJwt(token)
     dispatch({

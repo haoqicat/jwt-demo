@@ -6,7 +6,8 @@ import { goto } from '../actions'
 const HomeContainer = props => <Home {...props} />
 
 const mapStateToProps = state => ({
-  isAdmin: state.common.isAdmin
+  isAdmin: state.common.isAdmin,
+  posts: state.post.all
 })
 
 export default connect(mapStateToProps, { goto })(HomeContainer)

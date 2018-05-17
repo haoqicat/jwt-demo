@@ -11,7 +11,8 @@ import PostNew from '../containers/PostNewContainer'
 import PropTypes from 'prop-types'
 
 const propTypes = {
-  loadCurrentUserIfNeeded: PropTypes.func.isRequired
+  loadCurrentUserIfNeeded: PropTypes.func.isRequired,
+  fetchPosts: PropTypes.func.isRequired
 }
 
 injectGlobal`
@@ -27,6 +28,7 @@ injectGlobal`
 class Main extends Component {
   componentDidMount() {
     this.props.loadCurrentUserIfNeeded()
+    this.props.fetchPosts()
   }
   render() {
     return (
